@@ -15,7 +15,8 @@
     gDriveStorageSource$,
     lastExportedTarget$,
     lastExportedTypes$,
-    oneDriveStorageSource$
+    oneDriveStorageSource$,
+    ttsuSyncServerStorageSource$
   } from '$lib/data/store';
   import { executeReplicate$ } from '$lib/functions/replication/replication-progress';
   import { createEventDispatcher } from 'svelte';
@@ -46,6 +47,15 @@
         : []),
       ...(isStorageSourceAvailable(StorageKey.FS, $fsStorageSource$, window)
         ? [{ ...getStorageIconData(StorageKey.FS), source: StorageKey.FS, label: 'Filesystem' }]
+        : []),
+      ...(isStorageSourceAvailable(StorageKey.TTSU_SYNC_SERVER, $ttsuSyncServerStorageSource$, window)
+        ? [
+            {
+              ...getStorageIconData(StorageKey.TTSU_SYNC_SERVER),
+              source: StorageKey.TTSU_SYNC_SERVER,
+              label: 'ttsu-sync-server'
+            }
+          ]
         : [])
     ].filter((icon) => icon.source !== $storageSource$);
   }

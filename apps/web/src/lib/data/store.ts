@@ -238,6 +238,10 @@ export const oneDriveStorageSource$ = writableStringLocalStorageSubject()(
   'oneDriveStorageSource',
   StorageSourceDefault.ONEDRIVE_DEFAULT
 );
+export const ttsuSyncServerStorageSource$ = writableStringLocalStorageSubject()(
+  'ttsuSyncServerStorageSource',
+  StorageSourceDefault.TTSU_SYNC_SERVER_DEFAULT
+);
 
 export const fsStorageSource$ = writableStringLocalStorageSubject()('fsStorageSource', '');
 
@@ -499,6 +503,7 @@ export const booklistSortOptions$ = writableObjectLocalStorageSubject<Record<str
     [StorageKey.BROWSER]: { property: 'lastBookOpen', direction: SortDirection.DESC },
     [StorageKey.GDRIVE]: { property: 'title', direction: SortDirection.ASC },
     [StorageKey.ONEDRIVE]: { property: 'title', direction: SortDirection.ASC },
+    [StorageKey.TTSU_SYNC_SERVER]: { property: 'title', direction: SortDirection.ASC },
     [StorageKey.FS]: { property: 'title', direction: SortDirection.ASC }
   }
 );

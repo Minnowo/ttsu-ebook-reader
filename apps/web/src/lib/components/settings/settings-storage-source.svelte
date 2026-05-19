@@ -56,7 +56,8 @@
   let storageSourceEncryptionDisabled = configuredEncryptionDisabled || false;
   let storageSourceTypes = [
     { key: StorageKey.GDRIVE, label: 'GDrive' },
-    { key: StorageKey.ONEDRIVE, label: 'OneDrive' }
+    { key: StorageKey.ONEDRIVE, label: 'OneDrive' },
+    { key: StorageKey.TTSU_SYNC_SERVER, label: 'ttsu-sync-server' }
   ];
 
   $: if (browser && 'showDirectoryPicker' in window) {

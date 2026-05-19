@@ -27,6 +27,7 @@
     fileCountData$,
     fsStorageSource$,
     gDriveStorageSource$,
+    ttsuSyncServerStorageSource$,
     isOnline$,
     oneDriveStorageSource$
   } from '$lib/data/store';
@@ -135,6 +136,15 @@
               label: 'Filesystem',
               key: StorageKey.FS,
               requiresConnectivity: false
+            }
+          ]
+        : []),
+      ...(isStorageSourceAvailable(StorageKey.TTSU_SYNC_SERVER, $ttsuSyncServerStorageSource$, window)
+        ? [
+            {
+              label: 'ttsu-sync-server',
+              key: StorageKey.TTSU_SYNC_SERVER,
+              requiresConnectivity: true
             }
           ]
         : [])

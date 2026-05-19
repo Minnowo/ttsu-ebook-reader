@@ -14,11 +14,13 @@ import { GDriveStorageHandler } from '$lib/data/storage/handler/gdrive-handler';
 import { MergeMode } from '$lib/data/merge-mode';
 import { OneDriveStorageHandler } from '$lib/data/storage/handler/onedrive-handler';
 import { ReplicationSaveBehavior } from '$lib/functions/replication/replication-options';
+import { TtsuSyncServerStorageHandler } from './handler/ttsu-sync-server-handler';
 
 let backupStorageHandler: BackupStorageHandler;
 let browserStorageHandler: BrowserStorageHandler;
 let gDriveStorageHandler: GDriveStorageHandler;
 let oneDriveStorageHandler: OneDriveStorageHandler;
+let ttsuSyncServerStorageHandler: TtsuSyncServerStorageHandler;
 let fsStorageHandler: FilesystemStorageHandler;
 
 export function getStorageHandler(
@@ -151,6 +153,22 @@ export function getStorageHandler(
       );
 
       return oneDriveStorageHandler;
+    case StorageKey.TTSU_SYNC_SERVER:
+      ttsuSyncServerStorageHandler =
+        ttsuSyncServerStorageHandler ||
+        new TtsuSyncServerStorageHandler(StorageKey.TTSU_SYNC_SERVER, window);
+      ttsuSyncServerStorageHandler.updateSettings(
+        window,
+        isForBrowser,
+        saveBehavior,
+        statisticsMergeMode,
+        readingGoalsMergeMode,
+        cacheStorageData,
+        askForStorageUnlock,
+        storageSourceName
+      );
+
+      return ttsuSyncServerStorageHandler;
     case StorageKey.FS:
       fsStorageHandler = fsStorageHandler || new FilesystemStorageHandler(window, StorageKey.FS);
       fsStorageHandler.updateSettings(
