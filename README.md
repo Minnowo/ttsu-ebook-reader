@@ -321,6 +321,7 @@ Following export targets are available:
 | Zip File   | Creates an offline archive of the selected data                                                                                                                                                                                                                                                                                                                                                 |
 | GDrive     | Allows you to upload and download data to your GDrive account.<br/> Requires a google login - the default session is valid for 50 minutes and requires a manual reauthentication/export afterwards if no custom credentials with a client secret are used.<br/>You can revoke the app permissions any time in your [google security settings](https://myaccount.google.com/permissions)         |
 | OneDrive   | Allows you to upload and download data to your OneDrive account.<br/>Requires a microsoft login - the default session is valid for 50 minutes and requires a manual reauthentication/export afterwards if no custom credentials with a client secret are used.<br/>You can revoke the app permissions any time in your [microsoft account privacy settings](https://microsoft.com/consent)<br/> |
+| ttsu-sync-server | Allows you to upload and download data to a self hosted [ttsu-sync-server](https://github.com/Minnowo/ttsu-sync-server) instance.<br/>Authenticates with a long lived API key instead of an OAuth login, so there is no reauthentication timeout                                                                                                                                          |
 | Filesystem | Allows you to store and read data from a configured folder on your hard drive.<br/>You have to grant permissions once per new opened tab.<br/>Only available on desktop chromium browsers - some browser like Brave may need additional flags in the browser settings enabled in order to see/use this option                                                                                   |
 
 To export data select books in the manager and click/tap on the respective icon in the header.
@@ -411,6 +412,17 @@ To create such custom credentials follow these steps for the hoster you want to 
 42. Click on "Add"
 43. Copy the value for later
 44. Create a new OneDrive source on ッツ Ebook Reader with the client id and/or client secret you just have created
+</details>
+<br/>
+<details>
+    <summary>ttsu-sync-server</summary>
+
+ttsu-sync-server is a open source self-hostable server.  See the [ttsu-sync-server](https://github.com/Minnowo/ttsu-sync-server) repo for how to build, configure and run the server itself.
+
+45. Once the server is running, create a user and generate an API key
+46. Under `Settings` > `Data` click the `+ Add` button to add a new remote data source
+47. Choose `ttsu-sync-server` as the source
+48. Enter the server's base URL (e.g. `http://127.0.0.1:8080`) in the "Client ID" field and the API key you generated in the "Client Secret" field. The username is not used by the server, only the API key
 </details>
 <br/>
 
@@ -568,3 +580,23 @@ pnpm build
 ### External Hoster
 
 In case you want to use external hoster like GDrive for data import/export follow the steps described in [Storage Sources](#storage-sources)
+
+
+# Dev
+
+1. Have [Node.js](https://nodejs.org/) and [Yarn](https://classic.yarnpkg.com/) installed
+```sh
+git clone <repo-url>
+```
+2. Install the dependencies
+```sh
+yarn
+```
+
+3. Start the dev server:
+```sh
+yarn dev --host 0.0.0.0
+```
+
+
+
