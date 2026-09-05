@@ -4,7 +4,10 @@
  * All rights reserved.
  */
 
-import { unlockStorageData, type StorageUnlockAction } from '$lib/data/storage/storage-source-manager';
+import {
+  unlockStorageData,
+  type StorageUnlockAction
+} from '$lib/data/storage/storage-source-manager';
 import { database } from '$lib/data/store';
 import { AuthType, type StorageAuthManager } from './storage-auth-manager';
 

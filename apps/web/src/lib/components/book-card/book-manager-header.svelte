@@ -139,7 +139,11 @@
             }
           ]
         : []),
-      ...(isStorageSourceAvailable(StorageKey.TTSU_SYNC_SERVER, $ttsuSyncServerStorageSource$, window)
+      ...(isStorageSourceAvailable(
+        StorageKey.TTSU_SYNC_SERVER,
+        $ttsuSyncServerStorageSource$,
+        window
+      )
         ? [
             {
               label: 'ttsu-sync-server',

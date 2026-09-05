@@ -150,7 +150,8 @@
           oneDriveStorageSource:
             oneDriveStorageSource$.getValue() === StorageSourceDefault.ONEDRIVE_DEFAULT,
           ttsuSyncServerStorageSource:
-            ttsuSyncServerStorageSource$.getValue() === StorageSourceDefault.TTSU_SYNC_SERVER_DEFAULT,
+            ttsuSyncServerStorageSource$.getValue() ===
+            StorageSourceDefault.TTSU_SYNC_SERVER_DEFAULT,
           fsStorageSource: !!fsStorageSource$.getValue(),
           syncTarget: !!syncTarget$.getValue(),
           keepLocalStatisticsOnDeletion: keepLocalStatisticsOnDeletion$.getValue(),

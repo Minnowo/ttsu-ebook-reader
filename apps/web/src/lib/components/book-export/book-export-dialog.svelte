@@ -48,7 +48,11 @@
       ...(isStorageSourceAvailable(StorageKey.FS, $fsStorageSource$, window)
         ? [{ ...getStorageIconData(StorageKey.FS), source: StorageKey.FS, label: 'Filesystem' }]
         : []),
-      ...(isStorageSourceAvailable(StorageKey.TTSU_SYNC_SERVER, $ttsuSyncServerStorageSource$, window)
+      ...(isStorageSourceAvailable(
+        StorageKey.TTSU_SYNC_SERVER,
+        $ttsuSyncServerStorageSource$,
+        window
+      )
         ? [
             {
               ...getStorageIconData(StorageKey.TTSU_SYNC_SERVER),
