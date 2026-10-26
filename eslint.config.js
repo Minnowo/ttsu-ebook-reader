@@ -66,7 +66,7 @@ module.exports = (async () => {
         'headers/header-format': [
           'error',
           {
-            content: `@license BSD-3-Clause\nCopyright (c) {year}, ッツ Reader Authors\nAll rights reserved.`,
+            content: `@license AGPL-3.0-or-later\nCopyright (c) {year}, Ajatt-Tools and contributors\nAll rights reserved.`,
             source: 'string',
             style: 'jsdoc',
             trailingNewlines: 2,

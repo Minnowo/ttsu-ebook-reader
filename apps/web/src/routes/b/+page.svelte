@@ -1195,7 +1195,7 @@
         props: {
           title: 'Old Domain',
           message:
-            'You are currently using the old domain of ッツ Reader - consider switching to https://reader.ttsu.app to prevent issues and to ensure full features'
+            'You are currently using the old domain of AJATT Reader - consider switching to https://reader.ajatt.top to prevent issues and to ensure full features'
         },
         disableCloseOnClick: true
       }

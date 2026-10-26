@@ -262,7 +262,7 @@
   }
 
   $: if (browser) {
-    // because Yomitan popup creates overflow on vertical-rl
+    // because Rikaitan popup creates overflow on vertical-rl
     document.body.classList.add(cssClassOverflowHidden);
   }
 

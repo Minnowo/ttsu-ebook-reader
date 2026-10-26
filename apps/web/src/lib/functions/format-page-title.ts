@@ -1,11 +1,11 @@
 /**
- * @license BSD-3-Clause
- * Copyright (c) 2026, ッツ Reader Authors
+ * @license AGPL-3.0-or-later
+ * Copyright (c) 2026, Ajatt-Tools and contributors
  * All rights reserved.
  */
 
 export function formatPageTitle(title: string) {
-  const appName = 'ッツ Ebook Reader';
+  const appName = 'AJATT Reader';
   if (!title) return appName;
   return `${title} | ${appName}`;
 }

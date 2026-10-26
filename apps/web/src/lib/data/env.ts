@@ -1,10 +1,10 @@
 /**
- * @license BSD-3-Clause
- * Copyright (c) 2026, ッツ Reader Authors
+ * @license AGPL-3.0-or-later
+ * Copyright (c) 2026, Ajatt-Tools and contributors
  * All rights reserved.
  */
 
-export const basePath = import.meta.env.VITE_BASE_PATH || 'https://reader.ttsu.app';
+export const basePath = import.meta.env.VITE_BASE_PATH || 'https://reader.ajatt.top';
 export const pagePath = import.meta.env.VITE_PAGE_PATH || '';
 export const clearConsoleOnReload = !!import.meta.env.VITE_CLEAR_ON_RELOAD || false;
 export const storageRootName = import.meta.env.VITE_STORAGE_ROOT_NAME || 'ttu-reader-data';

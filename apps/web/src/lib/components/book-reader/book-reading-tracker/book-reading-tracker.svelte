@@ -245,7 +245,7 @@
   }
 
   let yomiPopover: HTMLElement | null;
-  let jpdbPopover: HTMLElement | null;
+  let nipdbPopover: HTMLElement | null;
   let actionInProgress = false;
   let hadError = false;
   let pausedByAutoPause = false;
@@ -364,7 +364,7 @@
 
   $: if ($trackerAutoPause$ !== TrackerAutoPause.OFF && !yomiPopover) {
     yomiPopover = document.querySelector(
-      '.yomichan-popup,.yomichan-float,.yomitan-popup,.yomitan-float'
+      '.yomichan-popup,.yomichan-float,.rikaitan-popup,.rikaitan-float'
     );
 
     if (!yomiPopover) {
@@ -379,8 +379,8 @@
       dictionaryObserver.observe(yomiPopover, { attributes: true });
     }
 
-    if (jpdbPopover) {
-      dictionaryObserver.observe(jpdbPopover, { attributes: true });
+    if (nipdbPopover) {
+      dictionaryObserver.observe(nipdbPopover, { attributes: true });
     }
   } else {
     dictionaryObserver.disconnect();
@@ -395,7 +395,7 @@
 
   function handleYomiMutation() {
     yomiPopover = document.querySelector(
-      '.yomichan-popup,.yomichan-float,.yomitan-popup,.yomitan-float'
+      '.yomichan-popup,.yomichan-float,.rikaitan-popup,.rikaitan-float'
     );
 
     if (yomiPopover) {
@@ -404,7 +404,7 @@
   }
 
   function handleMutation() {
-    if (!jpdbPopover && !yomiPopover) {
+    if (!nipdbPopover && !yomiPopover) {
       return;
     }
 
@@ -422,7 +422,7 @@
   function isDictionaryDisplayed() {
     return (
       (yomiPopover && yomiPopover.style.visibility !== 'hidden') ||
-      (jpdbPopover && jpdbPopover.style.opacity !== '0')
+      (nipdbPopover && nipdbPopover.style.opacity !== '0')
     );
   }
 
@@ -549,7 +549,7 @@
   async function init() {
     try {
       todayKey = getDateKey($startDayHoursForTracker$);
-      jpdbPopover = document.getElementById('jpdb-popup');
+      nipdbPopover = document.getElementById('nipdb-popup');
 
       const statisticsForTitle = await database.getStatisticsForBook(bookTitle);
       const setFirstBookReadResult = await database.setFirstBookRead(

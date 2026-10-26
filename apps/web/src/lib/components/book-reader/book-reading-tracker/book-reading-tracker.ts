@@ -1,6 +1,6 @@
 /**
- * @license BSD-3-Clause
- * Copyright (c) 2026, ッツ Reader Authors
+ * @license AGPL-3.0-or-later
+ * Copyright (c) 2026, Ajatt-Tools and contributors
  * All rights reserved.
  */
 

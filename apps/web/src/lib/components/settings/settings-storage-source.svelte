@@ -357,15 +357,17 @@
       <div class="flex items-center my-4 max-w-xs">
         <Fa icon={faTriangleExclamation} />
         <span class="ml-2">
-          Make sure to understand the
-          <a
-            class="text-red-500"
-            href="https://github.com/ttu-ttu/ebook-reader?tab=readme-ov-file#security-considerations"
-            target="_blank"
-          >
-            Implications
-          </a>
-          of your choosen Settings
+          Make sure to understand the Implications of your choosen Settings. AJATT Reader has no
+          backend component to store/retrieve your storage source data like refresh tokens in a
+          secure way at runtime. Access to data like the refresh tokens allows to access external
+          hosted Data on your behalf without you potentially even noticing it. You are therefore
+          asked to provide a password for storage sources of external hoster which is used to secure
+          and encrypt the data locally. As this password is only known to you and will not be stored
+          you will have to (re)enter it whenever you want to delete/edit the storage source or AJATT
+          Reader needs to access data from the storage source. For the same reason the password
+          can't be restored - if you forget it you will not be able to interact with this storage
+          source anymore. The password should follow common best practices in terms of complexity
+          and length though there are currently no rules enforced on the site for it.
         </span>
       </div>
     {/if}

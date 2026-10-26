@@ -1197,7 +1197,7 @@
       {#if trackerAutoPause !== TrackerAutoPause.OFF}
         <SettingsItemGroup
           title="Dictionary Detection"
-          tooltip={`If enabled auto pause is skipped if open yomitan/jpdb-browser-reader was detected - yomitan requires disabled 'Secure Container' settings`}
+          tooltip={`If enabled auto pause is skipped if open Rikaitan was detected - Rikaitan requires disabled 'Secure Container' settings`}
         >
           <ButtonToggleGroup
             options={optionsForToggle}

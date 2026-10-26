@@ -194,11 +194,11 @@
   <svelte:fragment slot="footer">
     <a
       class={buttonClasses}
-      href="https://github.com/ttu-ttu/ebook-reader"
+      href="https://github.com/Ajatt-Tools/ajatt_book_reader"
       target="_blank"
       rel="noreferrer"
     >
-      Open Repository
+      Open GitHub Repository
       <Ripple />
     </a>
     <a class={buttonClasses} href={downloadableLog} download="log.json">

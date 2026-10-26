@@ -1,0 +1,75 @@
+name: Scheduled Git Pull
+on:
+  workflow_dispatch:
+  schedule:
+    # Every Friday at 21:00 UTC (adjust timezone as needed)
+    - cron: '0 21 * * FRI'
+
+# https://github.com/orgs/community/discussions/46398
+permissions:
+  contents: write # allow git push
+  actions: write # allow workflow dispatch
+  # pull-requests: write # create PRs
+
+jobs:
+  do_git_pull:
+    runs-on: ubuntu-latest
+    name: Update Repository using git pull
+    steps:
+      # Note: fucking hell!
+      # https://github.com/actions/checkout/issues/125
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: git pull
+        shell: bash
+        id: dopull
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          set -euxo pipefail
+
+          REMOTE_NAME="ttu-upstream"
+          REMOTE_URL="https://github.com/ttu-ttu/ebook-reader.git"
+          BRANCH=main
+
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "noreply@github.com"
+          git config --local pull.rebase false
+
+          git remote add -f "$REMOTE_NAME" "$REMOTE_URL"
+          git fetch --prune "$REMOTE_NAME"
+
+          if git merge-base --is-ancestor "$REMOTE_NAME/$BRANCH" HEAD; then
+            # up to date
+            exit
+          fi
+
+          git merge --no-edit "$REMOTE_NAME/$BRANCH"
+
+          if git push; then
+            echo "merge_status=wants_dispatch" >>"$GITHUB_OUTPUT"
+          else
+            echo "merge_status=wants_pr" >>"$GITHUB_OUTPUT"
+          fi
+
+      # https://github.com/peter-evans/create-pull-request
+      - name: Create pull request if necessary
+        if: steps.dopull.outputs.merge_status == 'wants_pr'
+        uses: peter-evans/create-pull-request@b4733b9419fd47bbfa1807b15627e17cd70b5b22
+        with:
+          token: ${{ secrets.PRIVATE_REPO_TOKEN || secrets.GITHUB_TOKEN }}
+          title: 'Pull from upstream.'
+          body: 'This PR performs a merge with upstream.'
+          sign-commits: false
+          delete-branch: true
+          author: 'GitHub <noreply@github.com>'
+
+      - name: Dispatch Deploy
+        if: steps.dopull.outputs.merge_status == 'wants_dispatch'
+        uses: aurelien-baudet/workflow-dispatch@3133c5d135c7dbe4be4f9793872b6ef331b53bc7 # pin@v2
+        with:
+          workflow: Deploy # match workflow name (not filename)
+          token: ${{ secrets.GITHUB_TOKEN }}
+          wait-for-completion: false
